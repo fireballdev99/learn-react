@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import './App.css';
+import { useState, useRef, useEffect, forwardRef } from 'react'
+import Headline from './Headline';
+
+
+const App = () => {
+  const [greeting, setGreeting] = useState('Hello react');
+  const handleChange = event => setGreeting(event.target.value);
+  const ref = useRef();
+  useEffect(() => ref.current.focus(), [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{greeting}</h1>
+      <Input value={greeting} handleChange={handleChange} ref={ref} />
     </div>
   );
 }
+
+const Input = forwardRef(({ value, handleChange }, ref) => (
+  <input type="text" placeholder={value} onChange={handleChange} ref={ref} />
+));
+
 
 export default App;

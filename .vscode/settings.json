@@ -1,0 +1,6 @@
+{
+    "auto-close-tag.disableOnLanguage": [],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
+}
